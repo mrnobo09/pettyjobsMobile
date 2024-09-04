@@ -8,20 +8,20 @@ const statusColors = {
   completed: '#00934c', // Green
 };
 
-export default function Job({ title, description, image, status }) {
-  const statusColor = statusColors[status] || '#b0b0b0'; // Default to grey if status is unknown
+export default function Job(props) {
+  const statusColor = statusColors[props.job.status] || '#b0b0b0'; // Default to grey if status is unknown
   
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={image} style={styles.image} />
+        <Image source={{uri:`data:image/png;base64,${props.job.images[0].image_data}`}} style={styles.image} />
       </View>
       <View style={styles.detailsContainer}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.title}>{props.job.title}</Text>
+        <Text style={styles.description} numberOfLines={1}>{props.job.description}</Text>
       </View>
       <View style={[styles.statusContainer, { backgroundColor: statusColor }]}>
-        <Text style={styles.statusText}>{status.charAt(0).toUpperCase() + status.slice(1)}</Text>
+        <Text style={styles.statusText}>{props.job.status.charAt(0).toUpperCase() + props.job.status.slice(1)}</Text>
       </View>
     </View>
   );
@@ -63,13 +63,15 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     color: '#555',
-    flexShrink: 1, // Allow text to wrap and not overflow
+    flexShrink: 0, // Allow text to wrap and not overflow
+    width:180
+
   },
   statusContainer: {
     position: 'absolute',
     bottom: 10,
     right: 10,
-    minWidth: 100, // Fixed width for status pill
+    minWidth: 100,
     paddingVertical: 6,
     borderRadius: 20,
     alignItems: 'center',

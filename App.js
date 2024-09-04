@@ -9,11 +9,17 @@ import Login from './Screens/auth/Login.js';
 import JobScreen from './Screens/JobScreen.js';
 import HistoryScreen from './Screens/HistoryScreen.js';
 import ReportScreen from './Screens/ReportScreen.js';
-import BottomNavBar from './Components/BottomNavbar'; // Import your BottomNavbar component
-
+import BottomNavBar from './Components/BottomNavbar';
+import { useState,useEffect } from 'react';
+//import WebSocket from 'ws';
 const Stack = createStackNavigator();
 
+
+
 function App() {
+  const [messages,setMessages] = useState([])
+  const [socket,setSocket] = useState(null)
+  
   return (
     <Provider store={Store}>
       <NavigationContainer>
@@ -28,7 +34,7 @@ function App() {
             >
               <Stack.Screen options={{headerShown:false}} name="Login" component={Login} />
               <Stack.Screen options={{headerLeft:null}} name="Home" component={HomeScreen} />
-              <Stack.Screen options={{headerLeft:null}} name="Jobs" component={JobScreen} />
+              <Stack.Screen options={{headerLeft:null}} name="Job" component={JobScreen} />
               <Stack.Screen options={{headerLeft:null}} name="History" component={HistoryScreen} />
               <Stack.Screen options={{headerLeft:null}} name="Report" component={ReportScreen} />
             </Stack.Navigator>

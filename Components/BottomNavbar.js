@@ -19,20 +19,20 @@ const BottomNavBar = () => {
         <Icon
           name="home"
           size={24}
-          color={currentRoute === 'Home' ? '#002667' : '#b0b0b0'} // Change color based on active state
+          color={currentRoute === 'Home' ? '#002667' : '#b0b0b0'}
         />
         <Text style={[styles.navText, { color: currentRoute === 'Home' ? '#002667' : '#b0b0b0' }]}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Jobs')}
+        onPress={() => navigation.navigate('Job')}
         style={styles.button}
       >
         <Icon
           name="work"
           size={24}
-          color={currentRoute === 'Jobs' ? '#002667' : '#b0b0b0'}
+          color={currentRoute === 'Job' ? '#002667' : '#b0b0b0'}
         />
-        <Text style={[styles.navText, { color: currentRoute === 'Jobs' ? '#002667' : '#b0b0b0' }]}>Jobs</Text>
+        <Text style={[styles.navText, { color: currentRoute === 'Job' ? '#002667' : '#b0b0b0' }]}>Job</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('History')}
