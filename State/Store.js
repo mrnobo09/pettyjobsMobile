@@ -1,5 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import loginReducer from './auth/loginSlice'
+import jobReducer from "./jobSlice"
 const initialState = {
 
 }
@@ -7,7 +8,8 @@ const initialState = {
 const Store = configureStore(
     {
         reducer:{
-            login:loginReducer
+            login:loginReducer,
+            getJob:jobReducer,
         },
     }
 )

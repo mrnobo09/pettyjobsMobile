@@ -1,5 +1,8 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { getJob } from '../Actions/getJob';
+import { useDispatch } from 'react-redux';
 
 const statusColors = {
   waiting: '#b0b0b0',  // Grey
@@ -9,12 +12,20 @@ const statusColors = {
 };
 
 export default function Job(props) {
+  const dispatch = useDispatch()
   const statusColor = statusColors[props.job.status] || '#b0b0b0'; // Default to grey if status is unknown
+  const navigation = useNavigation()
+
+  const viewJob = async() =>{
+    await dispatch(getJob(props.job.id))
+    navigation.navigate("View Job")
+  }
   
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={viewJob}>
+      <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={{uri:`data:image/png;base64,${props.job.images[0].image_data}`}} style={styles.image} />
+        <Image source={{uri:`data:image/png;base64,${props.job.image}`}} style={styles.image} />
       </View>
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{props.job.title}</Text>
@@ -24,6 +35,7 @@ export default function Job(props) {
         <Text style={styles.statusText}>{props.job.status.charAt(0).toUpperCase() + props.job.status.slice(1)}</Text>
       </View>
     </View>
+    </TouchableOpacity>
   );
 }
 

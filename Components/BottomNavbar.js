@@ -1,14 +1,20 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
-import { useNavigationState, useNavigation } from '@react-navigation/native';
+import { useNavigation, useNavigationState } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Change to your preferred icon set
 
 const BottomNavBar = () => {
   const navigation = useNavigation();
-  const navigationState = useNavigationState((state) => state);
-  
-  // Set default route value if navigationState is undefined
-  let currentRoute = navigationState ? navigationState.routes[navigationState.index]?.name : 'Home';
+  const currentRouteName = useNavigationState((state) => {
+
+    const mainStack = state.routes[state.index]?.state;
+    return mainStack?.routes[mainStack.index]?.name; 
+    
+  });
+
+  const getColor = (routeNameToCheck) => {
+    return currentRouteName === routeNameToCheck ? '#002667' : '#b0b0b0';
+  };
 
   return (
     <View style={styles.container}>
@@ -19,9 +25,9 @@ const BottomNavBar = () => {
         <Icon
           name="home"
           size={24}
-          color={currentRoute === 'Home' ? '#002667' : '#b0b0b0'}
+          color={getColor('Home')}
         />
-        <Text style={[styles.navText, { color: currentRoute === 'Home' ? '#002667' : '#b0b0b0' }]}>Home</Text>
+        <Text style={[styles.navText, { color: getColor('Home') }]}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Job')}
@@ -30,9 +36,9 @@ const BottomNavBar = () => {
         <Icon
           name="work"
           size={24}
-          color={currentRoute === 'Job' ? '#002667' : '#b0b0b0'}
+          color={getColor('Job')}
         />
-        <Text style={[styles.navText, { color: currentRoute === 'Job' ? '#002667' : '#b0b0b0' }]}>Job</Text>
+        <Text style={[styles.navText, { color: getColor('Job') }]}>Job</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('History')}
@@ -41,9 +47,9 @@ const BottomNavBar = () => {
         <Icon
           name="history"
           size={24}
-          color={currentRoute === 'History' ? '#002667' : '#b0b0b0'}
+          color={getColor('History')}
         />
-        <Text style={[styles.navText, { color: currentRoute === 'History' ? '#002667' : '#b0b0b0' }]}>History</Text>
+        <Text style={[styles.navText, { color: getColor('History') }]}>History</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Report')}
@@ -52,9 +58,9 @@ const BottomNavBar = () => {
         <Icon
           name="report"
           size={24}
-          color={currentRoute === 'Report' ? '#002667' : '#b0b0b0'}
+          color={getColor('Report')}
         />
-        <Text style={[styles.navText, { color: currentRoute === 'Report' ? '#002667' : '#b0b0b0' }]}>Report</Text>
+        <Text style={[styles.navText, { color: getColor('Report') }]}>Report</Text>
       </TouchableOpacity>
     </View>
   );

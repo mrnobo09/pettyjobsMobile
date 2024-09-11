@@ -25,7 +25,6 @@ const loginSlice = createSlice({
             const refresh = action.payload.refresh_token;
             const user = action.payload.user_data;
 
-            // Store tokens asynchronously
             AsyncStorage.setItem('access', access);
             AsyncStorage.setItem('refresh', refresh);
             

@@ -69,7 +69,7 @@ export default function JobScreen() {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MzUwMTYwLCJpYXQiOjE3MjUzNDY1NjAsImp0aSI6IjA0NTRjY2U4YWYwNjQzNTg5YjA4MWNkODk3MjkxMWEyIiwidXNlcl9pZCI6M30.oD2XDcRtRhZgWszbmUU44BqjrBhZeXscaLfcfpepQSY'
+          'Authorization': 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2NTU1OTk5LCJpYXQiOjE3MjU5NTExOTksImp0aSI6ImFlNGIzMjY4NjIwYTRjNzk5YTAwNDg2OGUxZjhmMWIzIiwidXNlcl9pZCI6Mn0._alqhZCoO3IGOIGDdoOPIpX7cltQIkUgt-tPMtJILmE'
         },
       };
 
